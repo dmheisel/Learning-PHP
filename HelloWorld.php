@@ -6,5 +6,9 @@
   $age = $currentYear - $birthYear;
   echo "\n";
   echo $age;
-  echo "\n$user is $age years old!"
+  echo "\n$user is $age years old!";
+
+  $myArray = [1, 1, 2, 3, 5, 8, 13];
+  echo "\n";
+  echo $myArray[2];
 ?>
