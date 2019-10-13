@@ -30,3 +30,29 @@
 - `array_merge($array1, $array2)` will concatenate the two arrays together -- all of array1, then all of array 2 will be in the new array the merge method returns.
 - `sort($array)` will sort the array - it does not return a new version, just sorts it in place.  This can't be used to declare a new array.
 - `array_slice($array)` and `array_splice($array)` work similarly -- both return a new array
+
+## Arrays as objects/dict
+Arrays are keyed, by default each value is given its index in the array as a key.  But you can provide them with different keys than just the index!
+
+They are set up slightly different when declaring, for example:
+
+```
+$phone_numbers = [
+  "Alex" => "415-235-8573",
+  "Jessica" => "415-492-4856",
+]
+```
+
+These keys can be accessed much like in js -- `$phone_numbers["Alex"]`
+Similarly, keys can be added with the same bracket notation: `$phone_numbers["David"] = "218-750-2287"` would add my phone number to the list with the key "David"
+
+### Additional array methods with keys/values
+- `array_key_exists(keyName, $array)` lets you check if keyName is in the array:
+```
+if (array_key_exists("Alex", $phone_numbers)) {
+    echo "Alex's phone number is " . $phone_numbers["Alex"] . "\n";
+} else {
+    echo "Alex's phone number is not in the phone book!";
+}
+```
+
