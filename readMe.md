@@ -22,6 +22,7 @@ Learning PHP from the point of view of someone who knows javascript pretty decen
     - [Foreach Loop](#foreach-loop)
   - [While Loop](#while-loop)
     - [Flow Statements](#flow-statements)
+- [Functions](#functions)
 
 # Basic Language Syntax:
 
@@ -179,3 +180,20 @@ While loops are generally best used when you don't know how many times it may ta
 ### Flow Statements
 - `break` -- this will immediately "break" the loop and quit out of the code block.
 - `continue` -- returns to the top of the while loop and checks the condition again, ignoring anything below it.  Loop continues.
+
+
+# Functions
+Functions work similarly to in js and look similar as well, with php's specific styling in place.
+
+Functions that are included in php code library are called Library functions (these are things like strlen() or array_push()).  Functions created by the user are called User functions.
+
+Functions are declared thusly: `function funcName($args){ //...do something here... }`
+Within the function block, use the same `return` to return whatever value you want the function to get.
+
+Simple example of a function:
+
+```
+function addinate($x, $y) {
+    return $x + $y;
+  }
+```
