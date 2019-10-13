@@ -16,9 +16,12 @@ Learning PHP from the point of view of someone who knows javascript pretty decen
   - [Additional array methods with keys/values](#additional-array-methods-with-keysvalues)
 - [Strings](#strings)
   - [String Methods](#string-methods)
-- [For Loops](#for-loops)
-  - [For Loop](#for-loop)
-  - [Foreach Loop](#foreach-loop)
+- [Loops](#loops)
+  - [For Loops:](#for-loops)
+    - [Standard For Loop](#standard-for-loop)
+    - [Foreach Loop](#foreach-loop)
+  - [While Loop](#while-loop)
+    - [Flow Statements](#flow-statements)
 
 # Basic Language Syntax:
 
@@ -107,11 +110,13 @@ $fruits = implode(",", $fruit_list);
 echo "The fruits are $fruits";
 ```
 
-# For Loops
+# Loops
+
+## For Loops:
 For loops -- for looping over iterable lists - work and look similar to what we know in javascript
 Two major types of for loops:
 
-## For Loop
+### Standard For Loop
 These look just like regular javascript for loops, with syntax changed for php variable declarations.
 - The first part is the initialization point: `$i = 0` - begin with $i (index) at 0
 - Followed by the stop condition: `$i < count($fibbArray)` -- the loop stops if this is not true.
@@ -127,7 +132,7 @@ for ($i = 0; $i < count($fibbArray); $i++) {
 }
 ```
 
-## Foreach Loop
+### Foreach Loop
 These are similar to javascript's For/Of or For/In loops, or using the array.forEach() method.
 - name the array you are iterating over: `$fibbArray`
 - declare a temporary name for each item in the iteration: `$fibbNumber`
@@ -152,3 +157,25 @@ foreach ($phone_numbers as $name => $number) {
   echo "$name's number is $number.\n";
 }
 ```
+
+## While Loop
+Also similar to javascript while loops - set a stop condition, and continue to loop until that condition is met.
+
+**Make sure the stop condition will be met or it will loop infinitely and generally cause problems!**
+
+For Loops are generally for looping over iterables (eg. arrays), but While Loops can be used to continue doing just about anything until the stop condition is met.  For example this will simply print the counter every time until it hits 10:
+
+```
+$counter = 0;
+
+while ($counter < 10) {
+    $counter += 1;
+    echo "Executing - counter is $counter.\n";
+}
+```
+
+While loops are generally best used when you don't know how many times it may take to meet the stop condition, and you want to continue doing that code until it does.
+
+### Flow Statements
+- `break` -- this will immediately "break" the loop and quit out of the code block.
+- `continue` -- returns to the top of the while loop and checks the condition again, ignoring anything below it.  Loop continues.
