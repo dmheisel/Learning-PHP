@@ -1,4 +1,5 @@
 # Learning PHP - My Notes
+Learning PHP from the point of view of someone who knows javascript pretty decently, working through each step of the way.
 
 ---
 
@@ -6,17 +7,20 @@
 
 - [Learning PHP - My Notes](#learning-php---my-notes)
 - [Table of Contents](#table-of-contents)
-  - [Basic Language Syntax:](#basic-language-syntax)
+- [Basic Language Syntax:](#basic-language-syntax)
   - [Concatenation:](#concatenation)
-  - [Arrays:](#arrays)
-    - [Array methods:](#array-methods)
-    - [More Array Methods!:](#more-array-methods)
+- [Arrays:](#arrays)
+  - [Array methods:](#array-methods)
+  - [More Array Methods!:](#more-array-methods)
   - [Arrays as objects/dict](#arrays-as-objectsdict)
-    - [Additional array methods with keys/values](#additional-array-methods-with-keysvalues)
-  - [Strings](#strings)
-    - [String Methods](#string-methods)
+  - [Additional array methods with keys/values](#additional-array-methods-with-keysvalues)
+- [Strings](#strings)
+  - [String Methods](#string-methods)
+- [For Loops](#for-loops)
+  - [For Loop](#for-loop)
+  - [Foreach Loop](#foreach-loop)
 
-## Basic Language Syntax:
+# Basic Language Syntax:
 
 - PHP is often included directly in HTML files, and declared with a php tag like `<?php ...your code here ?>`
 - Variables are declared like `$name = "David"` or `$age = 35`
@@ -29,12 +33,12 @@
 
 - Use `.` to concatenate strings. `echo "\nHello " . "World!"` will print "Hello World!" to a new line
 
-## Arrays:
+# Arrays:
 
 - arrays are declared similarly to variables: `$myArray = [1, 1, 2, 3, 5, 8, 13]`
 - arrays are zero-indexed, so indices in array are accessed similarly to js: `echo $myArray[2]` will print 2.
 
-### Array methods:
+## Array methods:
 
 - `count($array)`: using count will display the length of the array. `echo count($myArray)` will print 7
 - `reset($array)`: reset resets the internal iteration pointer to the first index and returns the first index -- this means that it will print `1` and any iteration that would have been going over `$myArray` will be set back to 0.
@@ -42,7 +46,7 @@
 - `array_pop($array)`: removes the last item from the array. `array_pop($myArray)` will remove the newly added 21.
 - Likewise, `array_shift($myArray)` will remove the first item, and `array_unshift($myArray, item)` will add `item` to the beginning of the array.
 
-### More Array Methods!:
+## More Array Methods!:
 
 - `array_merge($array1, $array2)` will concatenate the two arrays together -- all of array1, then all of array 2 will be in the new array the merge method returns.
 - `sort($array)` will sort the array - it does not return a new version, just sorts it in place. This can't be used to declare a new array.
@@ -64,7 +68,7 @@ $phone_numbers = [
 These keys can be accessed much like in js -- `$phone_numbers["Alex"]`
 Similarly, keys can be added with the same bracket notation: `$phone_numbers["David"] = "218-750-2287"` would add my phone number to the list with the key "David"
 
-### Additional array methods with keys/values
+## Additional array methods with keys/values
 
 - `array_key_exists(keyName, $array)` lets you check if keyName is in the array:
 
@@ -78,12 +82,12 @@ if (array_key_exists("Alex", $phone_numbers)) {
 
 - `array_keys($array)` and `array_values($array)` will return all the keys or values from the array in their own indexed array.
 
-## Strings
+# Strings
 
 - Variables can contain strings as their value, as seen above.
 - `$greeting = "Hello"`, `$name = "David"` -- these can be concatenated together also with `.`
 
-### String Methods
+## String Methods
 
 - `strlen($string)` will return the length of the string
 - `substr($string, #)` will cut everything from the string before the index of the number provided.
@@ -101,4 +105,50 @@ echo "The second fruit in the list is $fruit_list[1]";
 $fruit_list = ["apple","banana","orange"];
 $fruits = implode(",", $fruit_list);
 echo "The fruits are $fruits";
+```
+
+# For Loops
+For loops -- for looping over iterable lists - work and look similar to what we know in javascript
+Two major types of for loops:
+
+## For Loop
+These look just like regular javascript for loops, with syntax changed for php variable declarations.
+- The first part is the initialization point: `$i = 0` - begin with $i (index) at 0
+- Followed by the stop condition: `$i < count($fibbArray)` -- the loop stops if this is not true.
+- The last is how to increase the iteration: `$i++` -- every loop, increase $i by 1.
+- Brackets follow the loop to contain the code for what you want the loop to do on each iteration.
+Use a semicolon to split sections of the loop declaration
+
+```
+$fibbArray = [1, 1, 2, 3, 5, 8, 13, 21, 34];
+for ($i = 0; $i < count($fibbArray); $i++) {
+  $fibbNumber = $fibbArray[$i];
+  echo $fibbNumber . "\n";
+}
+```
+
+## Foreach Loop
+These are similar to For/Of or For/In loops, or using the array.forEach() method.
+- name the array you are iterating over: `$fibbArray`
+- declare a temporary name for each item in the iteration: `$fibbNumber`
+- and like above, brackets around whatever you want to do with each item in the array.
+
+```
+$fibbArray = [1, 1, 2, 3, 5, 8, 13, 21, 34];
+forEach($fibbArray as $fibbNumber) {
+  echo $fibbNumber . "\n";
+};
+```
+
+Foreach loops are good with arrays with custom keys, as well:
+- in the foreach parens, declare $key => $value for each pair.  Both can be manipulated/used in the code brackets.
+```
+$phone_numbers = [
+  "Alex" => "415-235-8573",
+  "Jessica" => "415-492-4856",
+];
+
+foreach ($phone_numbers as $name => $number) {
+  echo "$name's number is $number.\n";
+}
 ```
