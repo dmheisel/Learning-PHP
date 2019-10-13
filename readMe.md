@@ -56,3 +56,8 @@ if (array_key_exists("Alex", $phone_numbers)) {
 }
 ```
 
+- `array_keys($array)` and `array_values($array)` will return all the keys or values from the array in their own indexed array.
+
+## Strings
+
+
