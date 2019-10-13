@@ -128,7 +128,7 @@ for ($i = 0; $i < count($fibbArray); $i++) {
 ```
 
 ## Foreach Loop
-These are similar to For/Of or For/In loops, or using the array.forEach() method.
+These are similar to javascript's For/Of or For/In loops, or using the array.forEach() method.
 - name the array you are iterating over: `$fibbArray`
 - declare a temporary name for each item in the iteration: `$fibbNumber`
 - and like above, brackets around whatever you want to do with each item in the array.
