@@ -1,4 +1,5 @@
 # Learning PHP - My Notes
+
 Learning PHP from the point of view of someone who knows javascript pretty decently, working through each step of the way.
 
 ---
@@ -26,6 +27,7 @@ Learning PHP from the point of view of someone who knows javascript pretty decen
 - [Objects](#objects)
   - [Classes](#classes)
   - [Inheritance](#inheritance)
+    - [Public and Private class methods:](#public-and-private-class-methods)
 
 # Basic Language Syntax:
 
@@ -117,16 +119,19 @@ echo "The fruits are $fruits";
 # Loops
 
 ## For Loops:
+
 For loops -- for looping over iterable lists - work and look similar to what we know in javascript
 Two major types of for loops:
 
 ### Standard For Loop
+
 These look just like regular javascript for loops, with syntax changed for php variable declarations.
-- The first part is the initialization point: `$i = 0` - begin with $i (index) at 0
+
+- The first part is the initialization point: `$i = 0` - begin with \$i (index) at 0
 - Followed by the stop condition: `$i < count($fibbArray)` -- the loop stops if this is not true.
-- The last is how to increase the iteration: `$i++` -- every loop, increase $i by 1.
+- The last is how to increase the iteration: `$i++` -- every loop, increase \$i by 1.
 - Brackets follow the loop to contain the code for what you want the loop to do on each iteration.
-Use a semicolon to split sections of the loop declaration
+  Use a semicolon to split sections of the loop declaration
 
 ```
 $fibbArray = [1, 1, 2, 3, 5, 8, 13, 21, 34];
@@ -137,7 +142,9 @@ for ($i = 0; $i < count($fibbArray); $i++) {
 ```
 
 ### Foreach Loop
+
 These are similar to javascript's For/Of or For/In loops, or using the array.forEach() method.
+
 - name the array you are iterating over: `$fibbArray`
 - declare a temporary name for each item in the iteration: `$fibbNumber`
 - and like above, brackets around whatever you want to do with each item in the array.
@@ -150,7 +157,9 @@ forEach($fibbArray as $fibbNumber) {
 ```
 
 Foreach loops are good with arrays with custom keys, as well:
-- in the foreach parens, declare $key => $value for each pair.  Both can be manipulated/used in the code brackets.
+
+- in the foreach parens, declare $key => $value for each pair. Both can be manipulated/used in the code brackets.
+
 ```
 $phone_numbers = [
   "Alex" => "415-235-8573",
@@ -163,11 +172,12 @@ foreach ($phone_numbers as $name => $number) {
 ```
 
 ## While Loop
+
 Also similar to javascript while loops - set a stop condition, and continue to loop until that condition is met.
 
 **Make sure the stop condition will be met or it will loop infinitely and generally cause problems!**
 
-For Loops are generally for looping over iterables (eg. arrays), but While Loops can be used to continue doing just about anything until the stop condition is met.  For example this will simply print the counter every time until it hits 10:
+For Loops are generally for looping over iterables (eg. arrays), but While Loops can be used to continue doing just about anything until the stop condition is met. For example this will simply print the counter every time until it hits 10:
 
 ```
 $counter = 0;
@@ -181,14 +191,15 @@ while ($counter < 10) {
 While loops are generally best used when you don't know how many times it may take to meet the stop condition, and you want to continue doing that code until it does.
 
 ### Flow Statements
-- `break` -- this will immediately "break" the loop and quit out of the code block.
-- `continue` -- returns to the top of the while loop and checks the condition again, ignoring anything below it.  Loop continues.
 
+- `break` -- this will immediately "break" the loop and quit out of the code block.
+- `continue` -- returns to the top of the while loop and checks the condition again, ignoring anything below it. Loop continues.
 
 # Functions
+
 Functions work similarly to in js and look similar as well, with php's specific styling in place.
 
-Functions that are included in php code library are called Library functions (these are things like strlen() or array_push()).  Functions created by the user are called User functions.
+Functions that are included in php code library are called Library functions (these are things like strlen() or array_push()). Functions created by the user are called User functions.
 
 Functions are declared thusly: `function funcName($args){ //...do something here... }`
 Within the function block, use the same `return` to return whatever value you want the function to get.
@@ -202,6 +213,7 @@ function addinate($x, $y) {
 ```
 
 # Objects
+
 Now the meat of it!
 PHP is object oriented, though not strictly.
 
@@ -209,7 +221,7 @@ In object oriented programming, a `class` is a definition of an `object`, wherea
 
 ## Classes
 
-Classes are the definition -- they don't contain data, but do contain the structure of the object being defined.  They describe what information the object will hold and what methods it can perform.  Think of a class like a blueprint for creating the object.
+Classes are the definition -- they don't contain data, but do contain the structure of the object being defined. They describe what information the object will hold and what methods it can perform. Think of a class like a blueprint for creating the object.
 
 A person could be described as a `class` thusly:
 
@@ -227,23 +239,28 @@ class Person {
   }
 }
 ```
+
 A few things to point out:
+
 - Constructor function: every class needs to have a `public function __construct($args)` -- this will be how we make new objects of this class.
 - use of -> instead of dot notation like in js.
-- keyword public -- this means the function can be called from outside the class.  private methods can only be called by something else within the same class.
-To follow up:
+- keyword public -- this means the function can be called from outside the class. private methods can only be called by something else within the same class.
+  To follow up:
+
 ```
 $jessica = new Person("Jessica", "Heisel");
 $jessica->greet();
 ```
-- Again, note the -> arrow function instead of .  Calling the greet() function on the Person class is done like `$objectName->functionName()`
+
+- Again, note the -> arrow function instead of . Calling the greet() function on the Person class is done like `$objectName->functionName()`
 - Note the constructor function - caps Person, passing in the arguments for `$firstName` and `$lastName`
 
 ## Inheritance
+
 Inheritance is a key concept of object oriented programming.
 Inheritance allows us to take code written elsewhere for another class, and re-use it with this new class that `extends` the first one.
 
-A class that extends another class is called a *child* class, and the one it is inheriting from is the *parent* class.
+A class that extends another class is called a _child_ class, and the one it is inheriting from is the _parent_ class.
 
 Syntax is thus:
 
@@ -261,4 +278,34 @@ class Student extends Person {
   }
 }
 ```
+
+-- Note that the Student did not have the greet() function specifically declared, but calling it will still work!
+
+```
+$david = new Student("David", "Heisel", "Prime Digital Academy", "158051");
+$david->greet();
+$david->giveSchoolInfo();
+```
+
+Both greet() and giveSchoolInfo() are methods of the Student class. Greet is given to Student for free from the Person class that it extends.
+
+### Public and Private class methods:
+
+Briefly touched on above, but `public` and `private` modifiers allow us to let some functions only be accessible within the object itself, and others to be accessable outside.
+
+For example:
+
+```
+// for external use
+ public function say_name() {
+     echo "My name is " . $this->full_name() . "\n";
+ }
+
+ // for internal use
+ private function full_name() {
+     return $this->first_name . " " . $this->last_name;
+ }
+```
+calling student->full_name() won't work outside the object, but student->say_name() will, and will call full_name() for us.
+
 
