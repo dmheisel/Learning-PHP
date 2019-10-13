@@ -23,6 +23,9 @@ Learning PHP from the point of view of someone who knows javascript pretty decen
   - [While Loop](#while-loop)
     - [Flow Statements](#flow-statements)
 - [Functions](#functions)
+- [Objects](#objects)
+  - [Classes](#classes)
+  - [Inheritance](#inheritance)
 
 # Basic Language Syntax:
 
@@ -197,3 +200,65 @@ function addinate($x, $y) {
     return $x + $y;
   }
 ```
+
+# Objects
+Now the meat of it!
+PHP is object oriented, though not strictly.
+
+In object oriented programming, a `class` is a definition of an `object`, whereas an `object` is an instance of an `object`, meaning that from one `class` you can create many `object`s.
+
+## Classes
+
+Classes are the definition -- they don't contain data, but do contain the structure of the object being defined.  They describe what information the object will hold and what methods it can perform.  Think of a class like a blueprint for creating the object.
+
+A person could be described as a `class` thusly:
+
+```
+class Person {
+  //constructor function
+  public function __construct($firstName, $lastName) {
+    //any time a Person object is made, pass it a firstName and lastName, and then those can be accessed through $Person->firstName
+    $this->firstName = $firstName;
+    $this->lastName = $lastName;
+  }
+
+  public function greet() {
+    echo "Hi!  My name is $this->firstName $this->lastName!\n";
+  }
+}
+```
+A few things to point out:
+- Constructor function: every class needs to have a `public function __construct($args)` -- this will be how we make new objects of this class.
+- use of -> instead of dot notation like in js.
+- keyword public -- this means the function can be called from outside the class.  private methods can only be called by something else within the same class.
+To follow up:
+```
+$jessica = new Person("Jessica", "Heisel");
+$jessica->greet();
+```
+- Again, note the -> arrow function instead of .  Calling the greet() function on the Person class is done like `$objectName->functionName()`
+- Note the constructor function - caps Person, passing in the arguments for `$firstName` and `$lastName`
+
+## Inheritance
+Inheritance is a key concept of object oriented programming.
+Inheritance allows us to take code written elsewhere for another class, and re-use it with this new class that `extends` the first one.
+
+A class that extends another class is called a *child* class, and the one it is inheriting from is the *parent* class.
+
+Syntax is thus:
+
+```
+class Student extends Person {
+  //inheritance!  students are a child of Person, taking in first and last name and also a shcool name and id number.
+  public function __construct($firstName = null, $lastName = null, $schoolName = null, $idNumber = null) {
+    parent::__construct($firstName, $lastName);
+    $this->schoolName = $schoolName;
+    $this->idNumber = $idNumber;
+  }
+
+  public function giveSchoolInfo() {
+    echo "I attend $this->schoolName and my school ID number is $this->idNumber.\n";
+  }
+}
+```
+
