@@ -19,7 +19,7 @@
 - arrays are declared similarly to variables: `$myArray = [1, 1, 2, 3, 5, 8, 13]`
 - arrays are zero-indexed, so indices in array are accessed similarly to js: `echo $myArray[2]` will print 2.
 
-## Array methods:
+### Array methods:
 - `count($array)`: using count will display the length of the array.  `echo count($myArray)` will print 7
 - `reset($array)`: reset resets the internal iteration pointer to the first index and returns the first index -- this means that it will print `1` and any iteration that would have been going over `$myArray` will be set back to 0.
 - `array_push($array, item)`: adds item to the end of the array.  `array_push($myArray, 21)` will add 21 to the end of $myArray.
@@ -27,5 +27,6 @@
 - Likewise, `array_shift($myArray)` will remove the first item, and `array_unshift($myArray, item)` will add `item` to the beginning of the array.
 
 ### More Array Methods!:
-- `array_merge($array, $array)` will concatenate the two arrays together
-- 
+- `array_merge($array1, $array2)` will concatenate the two arrays together -- all of array1, then all of array 2 will be in the new array the merge method returns.
+- `sort($array)` will sort the array - it does not return a new version, just sorts it in place.  This can't be used to declare a new array.
+- `array_slice($array)` and `array_splice($array)` work similarly -- both return a new array
