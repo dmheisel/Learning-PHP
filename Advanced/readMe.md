@@ -14,6 +14,8 @@ Learning PHP a little more, getting past the basic syntax stuff!
     - [Open Modes](#open-modes)
     - [Checking File Existance](#checking-file-existance)
     - [Closing a file](#closing-a-file)
+  - [Reading Files](#reading-files)
+    - [File Size](#file-size)
 
 # Importing/Including files
 
@@ -88,3 +90,45 @@ Since PHP will generate warnings if files don't exist,it's good practice to impl
 ### Closing a file
 
 Once finished working on the file, using `fclose()` on the file to close it. PHP will handle this when a script terminates on its own, but it's considered best practice to close it this way instead to ensure nothing else reads/writes to that file in error.
+
+## Reading Files
+
+Okay, so the file is open in read mode, but we still have to _read_ the file. That's where `fread()` comes in.
+
+`fread()` takes two parameters: _file handle_, and _length in bytes_
+
+Calling it would look like:
+
+```php
+fread($handle, "20")
+```
+
+This would use the \$handle file handler (where we open it and set it in read mode) to read 20 byts from this particular file.
+
+### File Size
+
+Since it's likely we might not know the size of the file we're reading, we can use `filesize()` to get the size of the file we're looking at.
+Using it in conjuction with `fread()` would look like this:
+
+```php
+<?php
+$file = 'food_shelf_south.txt';
+
+//check if the file exists
+if (file_exists($file)) {
+    //set the file handler to open it
+    $handle = fopen($file, 'r');
+
+    //read the entire contents of the file
+    $content = fread($handle, filesize($file));
+
+    //close the file handler
+    fclose($handle);
+
+    //print the content to console
+    echo $content;
+} else {
+    echo "ERROR: file does not exist";
+}
+?>
+```
