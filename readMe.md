@@ -28,6 +28,11 @@ Learning PHP from the point of view of someone who knows javascript pretty decen
   - [Classes](#classes)
   - [Inheritance](#inheritance)
     - [Public and Private class methods:](#public-and-private-class-methods)
+- [Math operations:](#math-operations)
+  - [Absolute value](#absolute-value)
+  - [Rounding](#rounding)
+  - [Square Roots](#square-roots)
+  - [Random Numbers](#random-numbers)
 
 # Basic Language Syntax:
 
@@ -306,6 +311,44 @@ For example:
      return $this->first_name . " " . $this->last_name;
  }
 ```
+
 calling student->full_name() won't work outside the object, but student->say_name() will, and will call full_name() for us.
 
+# Math operations:
 
+There are several built-in math functions in PHP, let's hit a few of them.
+
+## Absolute value
+
+`abs()` returns the absolute value of a number, for example:
+
+```
+echo abs(-5) //this will return 5
+```
+
+## Rounding
+
+`ceil()` will round a fraction UP to the next integer
+`floor()` will round a fraction DOWN to the next integer
+
+```
+echo ceil(4.2) //output is 5
+echo floor(4.2) //output is 4
+```
+
+## Square Roots
+
+`sqrt()` Finds the square root of a number.
+
+```
+echo sqrt(25) //output is 5
+```
+
+## Random Numbers
+
+`rand()` will return a random number.
+Optionally, you can pass it a min and max number to return a random number between.
+
+```
+echo rand(10,100) //outputs a random number between 10 and 100
+```

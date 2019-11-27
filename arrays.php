@@ -11,4 +11,3 @@
   print_r($myArray);
   array_pop($myArray);
   print_r($myArray);
-?>
