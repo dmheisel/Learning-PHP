@@ -33,6 +33,11 @@ Learning PHP from the point of view of someone who knows javascript pretty decen
   - [Rounding](#rounding)
   - [Square Roots](#square-roots)
   - [Random Numbers](#random-numbers)
+  - [Number Convertors](#number-convertors)
+    - [Decimal to Binary](#decimal-to-binary)
+    - [Decimal to Hexadecimal](#decimal-to-hexadecimal)
+    - [Decimal to Octal](#decimal-to-octal)
+    - [Other base systems](#other-base-systems)
 
 # Basic Language Syntax:
 
@@ -352,3 +357,23 @@ Optionally, you can pass it a min and max number to return a random number betwe
 ```
 echo rand(10,100) //outputs a random number between 10 and 100
 ```
+
+## Number Convertors
+
+### Decimal to Binary
+
+`decbin()` and `bindec()` convert numbers from decimal to binary and vice versa, respectively.
+
+### Decimal to Hexadecimal
+
+`dechex()` and `hecdex()` convert numbers from decimal to hexadecimal and vice versa, respecitvely.
+
+### Decimal to Octal
+
+`decoct()` and `octdec()` conver numers from decimal to octal and back, respecitvely.
+
+### Other base systems
+
+`base_convert()` will convert a base number to whatever other base number you pass -- arguments should be aligned as:
+
+`base_convert(number, frombase, tobase)`
