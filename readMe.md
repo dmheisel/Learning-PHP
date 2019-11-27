@@ -38,6 +38,10 @@ Learning PHP from the point of view of someone who knows javascript pretty decen
     - [Decimal to Hexadecimal](#decimal-to-hexadecimal)
     - [Decimal to Octal](#decimal-to-octal)
     - [Other base systems](#other-base-systems)
+- [Date and Time](#date-and-time)
+  - [date()](#date)
+  - [time()](#time)
+  - [mktime()](#mktime)
 
 # Basic Language Syntax:
 
@@ -377,3 +381,34 @@ echo rand(10,100) //outputs a random number between 10 and 100
 `base_convert()` will convert a base number to whatever other base number you pass -- arguments should be aligned as:
 
 `base_convert(number, frombase, tobase)`
+
+# Date and Time
+
+## date()
+
+PHP has a built in `date()` function that will convert a timestamp to a much more readable date and time, instead of the UNIX timestamp that a computer records time in.
+
+`date()` takes two parameters, _format_ and _timestamp_. The format is required, but timestamp is optional -- if it's not passed the function will use the current time. So something like this:
+
+```
+echo date('m/d/Y') // will return current date in mm/dd/YYYY format such as 11/27/2019
+
+echo date('F d, Y h:i:s A') //will return the current time and date, written out as November 27, 2019 11:51 A.M.
+```
+
+## time()
+
+Similarly, the `time()` function will return the current UNIX format timestamp.
+
+## mktime()
+
+Lastly, you can use `mktime()` to get a timestamp for a specific date/time. Specific syntax is:
+
+mktime(_hour_, _minute_, _second_, _month_, _day_, _year_)
+
+This can be used to get a time in the future, or past, and convert it to a new date, like:
+
+```
+$futureDate = mktime(0, 0, 0, date("m")+30, date("d"), date("Y"));
+echo date("d/m/Y", $futureDate);
+```
