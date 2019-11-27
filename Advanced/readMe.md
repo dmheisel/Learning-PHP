@@ -16,9 +16,15 @@ Learning PHP a little more, getting past the basic syntax stuff!
     - [Closing a file](#closing-a-file)
   - [Reading Files](#reading-files)
     - [File Size](#file-size)
-  - [readfile()](#readfile)
-  - [file_get_contents()](#filegetcontents)
-  - [file()](#file)
+    - [readfile()](#readfile)
+    - [file_get_contents()](#filegetcontents)
+    - [file()](#file)
+  - [Writing Files](#writing-files)
+    - [file_put_contents()](#fileputcontents)
+  - [Deleting, Renaming](#deleting-renaming)
+  - [Filesystem Functions](#filesystem-functions)
+  - [File Uploading/Downloading](#file-uploadingdownloading)
+    - [Upload](#upload)
 
 # Importing/Including files
 
@@ -136,7 +142,7 @@ if (file_exists($file)) {
 ?>
 ```
 
-## readfile()
+### readfile()
 
 This is a simpler way to read the entire contents of a file without having to worry about opening/closing it. This will have the same results as above:
 
@@ -152,11 +158,11 @@ if(file_exists($file)) {
 ?>
 ```
 
-## file_get_contents()
+### file_get_contents()
 
 Very similar to `readfile()`. Opens the file, reads it and echos out the entire file as a string variable.
 
-## file()
+### file()
 
 Another method to read a file, `file()` reads the file. _However_, this method returns the file's content as an **array of lines** instead of a string. Each element in the array corresponds to one line in the file read.
 
@@ -178,3 +184,53 @@ if (file_exists($file)) {
 }
 ?>
 ```
+
+## Writing Files
+
+File writing is handled very similarly to reading, above, but uses the "w" method for the handler.
+
+Also uses the `fwrite()` function.
+
+Optionally, can use `file_put_contents()` -- the counterpart to `file_get_contents()`.
+
+### file_put_contents()
+
+Much like get contents, this doesn't need to use the fopen() or fwrite() methods. Additionally, you can pass it a _special parameter_ in the form of a `FILE_APPEND` flag, that will cause it to open the file in append mode, instead of re-writing the entire file.
+
+This would look like:
+
+```php
+<?php
+$file = 'food_shelf_south.txt'
+$data = '25,65,75'
+
+file_put_contents($file, $data, FILE_APPEND) or die('ERROR: cannot write to file');
+
+echo "Data written to the file successfully."
+?>
+```
+
+## Deleting, Renaming
+
+Just a short bit -- you can use `unlink()` and `rename()` to delete or rename files, respectively.
+
+Both take the file as the fist parameter, and unlink takes the new file name as the second parameter.
+
+## Filesystem Functions
+
+| Function        | Description                                  |
+| --------------- | -------------------------------------------- |
+| fgetc()         | Gets one character at a time                 |
+| fgets()         | Gets one line(string) at a time              |
+| fgetcsv()       | Reads a line of CSV (comma separated values) |
+| filetype()      | Returns the file type of the file passed     |
+| feof()          | Checks if end of file is reached             |
+| is_file()       | Checks if the arg passed is an actual file   |
+| is_dir()        | Checks if the arg passed is a directory      |
+| is_executable() | Checks if it's an executable                 |
+| realpath()      | Returns canonicalized absolute pathname      |
+| rmdir()         | Removes a directory                          |
+
+## File Uploading/Downloading
+
+### Upload
