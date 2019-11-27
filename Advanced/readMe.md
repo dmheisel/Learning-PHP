@@ -9,6 +9,11 @@ Learning PHP a little more, getting past the basic syntax stuff!
 - [Importing/Including files](#importingincluding-files)
   - [include() and require()](#include-and-require)
   - [include_once() and require_once()](#includeonce-and-requireonce)
+- [The File System](#the-file-system)
+  - [Open Files](#open-files)
+    - [Open Modes](#open-modes)
+    - [Checking File Existance](#checking-file-existance)
+    - [Closing a file](#closing-a-file)
 
 # Importing/Including files
 
@@ -51,4 +56,35 @@ Caling `include()` or `require()` more than once in a file will typically result
 
 To get around this, you can use `include_once()` or `require_once()` -- this will only include the file once total, so it won't duplicate it or result in an error.
 
-#
+# The File System
+
+PHP contains functionality to create, access, modify, and manipulate files stored on your server dynamically.
+
+## Open Files
+
+`fopen()` will open a file, and takes two parameters: _filename_ and _mode_.
+
+```
+fopen("food_shelf_south.txt", r) //this will open the food shelf report in read mode
+```
+
+### Open Modes
+
+| Modes | Actions allowed                                                                                    |
+| ----- | -------------------------------------------------------------------------------------------------- |
+| r     | Read-only                                                                                          |
+| r+    | Read and Write                                                                                     |
+| w     | Write-only - File will be opened cleared, or if it doesn't exist, php will create it.              |
+| w+    | Write & read -- like r+ but clears the file                                                        |
+| a     | Append: opens file for writing only, but preserves current file content by writing to end of file. |
+| a+    | Append, read, write - preserves as 'a' does, but allows reading                                    |
+| x     | Writing Only, but errors if file already exists. To be used for creating a new file.               |
+| x+    | Writing, Reading, errors as 'x' does, creates new file.                                            |
+
+### Checking File Existance
+
+Since PHP will generate warnings if files don't exist,it's good practice to implement file checking before trying to access it, using `file_exists()`
+
+### Closing a file
+
+Once finished working on the file, using `fclose()` on the file to close it. PHP will handle this when a script terminates on its own, but it's considered best practice to close it this way instead to ensure nothing else reads/writes to that file in error.
