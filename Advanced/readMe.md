@@ -16,6 +16,9 @@ Learning PHP a little more, getting past the basic syntax stuff!
     - [Closing a file](#closing-a-file)
   - [Reading Files](#reading-files)
     - [File Size](#file-size)
+  - [readfile()](#readfile)
+  - [file_get_contents()](#filegetcontents)
+  - [file()](#file)
 
 # Importing/Including files
 
@@ -127,6 +130,49 @@ if (file_exists($file)) {
 
     //print the content to console
     echo $content;
+} else {
+    echo "ERROR: file does not exist";
+}
+?>
+```
+
+## readfile()
+
+This is a simpler way to read the entire contents of a file without having to worry about opening/closing it. This will have the same results as above:
+
+```php
+<?php
+$file = 'food_shelf_south.txt';
+
+if(file_exists($file)) {
+    readfile($file) or die("ERROR: cannot read file");
+} else {
+    echo "ERROR: file does not exist";
+}
+?>
+```
+
+## file_get_contents()
+
+Very similar to `readfile()`. Opens the file, reads it and echos out the entire file as a string variable.
+
+## file()
+
+Another method to read a file, `file()` reads the file. _However_, this method returns the file's content as an **array of lines** instead of a string. Each element in the array corresponds to one line in the file read.
+
+Processing the data for the file would need to use something like a `foreach()` loop to iterate over it.
+
+For example:
+
+```php
+<?php
+$file = 'food_shelf_south.txt';
+
+if (file_exists($file)) {
+    $fileArray = file($file) or die("ERROR: cannot read file to array");
+    forEach($fileArray as $line) {
+        echo $line;
+    }
 } else {
     echo "ERROR: file does not exist";
 }

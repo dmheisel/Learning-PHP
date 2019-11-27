@@ -12,7 +12,24 @@ if (file_exists($file)) {
     //close the file
     fclose($handle);
 
-    echo $content;
+    echo $content, "\n";
 } else {
     echo "ERROR: file does not exist, cannot read.";
+};
+
+if (file_exists($file)) {
+    readfile($file) or die('ERROR: cannot read this file.');
+    echo "\n";
+} else {
+    echo "ERROR: file does not exist.";
 }
+
+//lastly, converting file to an array using file()
+if (file_exists($file)) {
+    $arr = file($file) or die('ERROR: cannot read file to array');
+    foreach ($arr as $line) {
+        echo $line;
+    }
+} else {
+    echo "ERROR: file does not exist";
+};
