@@ -23,8 +23,10 @@ Learning PHP a little more, getting past the basic syntax stuff!
     - [file_put_contents()](#fileputcontents)
   - [Deleting, Renaming](#deleting-renaming)
   - [Filesystem Functions](#filesystem-functions)
-  - [Parsing Directories](#parsing-directories)
-    - [Make Directory](#make-directory)
+- [Parsing Directories](#parsing-directories)
+  - [Make Directory](#make-directory)
+  - [Copying Files](#copying-files)
+  - [Listing Files in a Directory](#listing-files-in-a-directory)
 
 # Importing/Including files
 
@@ -231,11 +233,11 @@ Both take the file as the fist parameter, and unlink takes the new file name as 
 | realpath()      | Returns canonicalized absolute pathname      |
 | rmdir()         | Removes a directory                          |
 
-## Parsing Directories
+# Parsing Directories
 
 Much like you can manipulate files, you can also manipulate directories and use PHP to navigate them.
 
-### Make Directory
+## Make Directory
 
 `mkdir()` makes a new directory, and you pass it the desired directory name as a parameter, like:
 
@@ -260,3 +262,48 @@ if (!file_exists($dir)) {
 ```
 
 If you specify a parent directory in the directory name, that directory **must** exist, otherwise php will throw an error.
+
+## Copying Files
+
+Using `copy()`, you can copy a file from one location and save it in another. It takes two parameters, the _sourcefile_ and the _destination_.
+
+**Note:** Both the source file and the destination directory must exist for this to work.
+
+## Listing Files in a Directory
+
+Using `scandir()`, you can list out all the files in the location passed as a parameter.
+
+A common usage would be to recursively list out all the files in a nested folder. Let's see what this would look like:
+
+```php
+//function to list out all files in a directory
+function listFiles($path)
+{
+    //does this file exist and is it a directory?
+    if (file_exists($path) && is_dir($path)) {
+        //get the results of what's in this directory
+        $result = scandir($path);
+
+        //now let's remove the current and parent directories and see what's left
+        $files = array_diff($result, array('.', '..'));
+
+        //if there are files remaining...
+        if (count($files) > 0) {
+            //loop through the file list
+            foreach ($files as $file) {
+                if (is_file("$path/$file")) {
+                    //if it's a file, print out the file name
+                    echo $file . "\n";
+                } else if (is_dir("$path/$file")) {
+                    //if it's a directory, call the function recursively
+                    listFiles("$path/$file");
+                }
+            }
+        } else {
+            echo "No files found in directory " . $path . "\n";
+        }
+    } else {
+        echo "ERROR: directory not found";
+    }
+}
+```
