@@ -27,6 +27,7 @@ Learning PHP a little more, getting past the basic syntax stuff!
   - [Make Directory](#make-directory)
   - [Copying Files](#copying-files)
   - [Listing Files in a Directory](#listing-files-in-a-directory)
+  - [File Matching](#file-matching)
 
 # Importing/Including files
 
@@ -307,3 +308,13 @@ function listFiles($path)
     }
 }
 ```
+
+## File Matching
+
+Lastly, you can use `glob()` to find files that match the parameter you pass. It works similarly to `scandir()`, but can have the param used to match specific files or patterns.
+
+```php
+glob("documents/*.txt")
+```
+
+Would return an array of all .txt files from the documents directory.
