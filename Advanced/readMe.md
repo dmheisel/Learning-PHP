@@ -23,6 +23,8 @@ Learning PHP a little more, getting past the basic syntax stuff!
     - [file_put_contents()](#fileputcontents)
   - [Deleting, Renaming](#deleting-renaming)
   - [Filesystem Functions](#filesystem-functions)
+  - [Parsing Directories](#parsing-directories)
+    - [Make Directory](#make-directory)
 
 # Importing/Including files
 
@@ -228,3 +230,33 @@ Both take the file as the fist parameter, and unlink takes the new file name as 
 | is_executable() | Checks if it's an executable                 |
 | realpath()      | Returns canonicalized absolute pathname      |
 | rmdir()         | Removes a directory                          |
+
+## Parsing Directories
+
+Much like you can manipulate files, you can also manipulate directories and use PHP to navigate them.
+
+### Make Directory
+
+`mkdir()` makes a new directory, and you pass it the desired directory name as a parameter, like:
+
+```php
+<?php
+$dir = 'myDir';
+
+//check if directory already exists
+if (!file_exists($dir)) {
+    //attempt to create the directory
+    if(mkdir($dir)) {
+        //on success
+        echo $dir . "directory successfully created.";
+    } else {
+        //on fail
+        echo "ERROR: directory could not be created.";
+    }
+} else {
+    echo "ERROR: directory already exists";
+}
+?>
+```
+
+If you specify a parent directory in the directory name, that directory **must** exist, otherwise php will throw an error.

@@ -8,6 +8,8 @@
   - [File Uploading/Downloading](#file-uploadingdownloading)
     - [Upload](#upload)
     - [Processing the uploaded file:](#processing-the-uploaded-file)
+    - [Download](#download)
+  - [Cookies and Sessions](#cookies-and-sessions)
 
 ## Built in Web Server
 
@@ -111,3 +113,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ```
 
 This code will store your photo into an 'upload/' folder in the server directory.
+
+### Download
+
+Generally, forcing a download is not necessary -- files are usually stored in an accessable way and hyperlinked -- the browser handles either displaying the image or pdf, or downloading the zip or exe file.
+
+However, you _can_ force a download using php's `readfile()` function.
+
+## Cookies and Sessions
